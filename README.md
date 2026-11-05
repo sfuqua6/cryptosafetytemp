@@ -34,6 +34,34 @@ The database is designed to evolve as patterns change.
 
 ---
 
+## Explore Summary Word Clusters
+
+The scripts create an interactive 2D word plot from all weekly incident summaries.
+Words are represented by their TF-IDF profiles across summaries, then projected
+to two dimensions with SVD. Common English stopwords are excluded; each remaining
+unique word appears once, and hovering over a point shows the word and its
+occurrence count. Nearby points indicate similar TF-IDF patterns in this corpus,
+not guaranteed semantic similarity.
+
+Install the visualization dependencies from the repository root:
+
+```sh
+python -m pip install -r vector_embeddings_vis/requirements.txt
+```
+
+Generate the summary text file, then the interactive HTML graph:
+
+```sh
+python summary_aggregator.py
+python vector_embeddings_vis/vector_embeddings.py
+```
+
+The graph is written to `vector_embeddings_vis/word_clusters.html`. Open it in a
+browser to zoom, pan, and inspect clusters. Use `--input` and `--output` to select
+different input and output paths.
+
+---
+
 ## Why This Exists
 
 Most crypto losses are not caused by novel exploits — they are caused by **repeated, well-known failure patterns**.
